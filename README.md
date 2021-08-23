@@ -19,7 +19,7 @@ Projeto foi desenvolvido com as seguintes tecnologias
 
 ## Protótipo do projeto: 
 
-pode ser testado acessando o link [Clone Netflix](/)
+pode ser testado acessando o link [Clone Netflix](https://netflix-reactjs-chi.vercel.app/)
 
 ## Como executar:
 
