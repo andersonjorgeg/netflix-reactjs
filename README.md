@@ -75,6 +75,6 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 <p align="center">
   Desenvolvido por Anderson Jorge durante o curso da B7Web React em agosto de 2021.<br>
-  Atualizado com Tailwind CSS e melhorias de UI/UX em 2023.
+  Atualizado com Tailwind CSS e melhorias de UI/UX em 2025.
 </p>
 ```
