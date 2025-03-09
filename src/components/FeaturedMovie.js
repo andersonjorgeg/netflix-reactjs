@@ -1,42 +1,76 @@
 import React from 'react';
-import './FeaturedMovie.css';
 
+// Componente que exibe o filme/série em destaque no topo da página
+// Recebe um objeto 'item' com informações do filme/série
 function FeaturedMovie({ item }){
 
+  // Extrai a data de lançamento e converte para um objeto Date
   let firstDate = new Date(item.first_air_date);
+  
+  // Cria um array para armazenar os gêneros do filme/série
   let genres = [];
   for(let i in item.genres){
     genres.push(item.genres[i].name)
   }
 
+  // Limita a descrição a 100 caracteres para não ocupar muito espaço
   let description = item.overview;
   if(description.length > 100){
     description = description.substring(0, 100) + "...";
   }
 
   return (
-    <section className="featured" style={{
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      backgroundImage: `url(https://image.tmdb.org/t/p/original${item.backdrop_path})`
+    // Seção principal com imagem de fundo do filme/série
+    <section className="relative h-[70vh] md:h-[80vh] lg:h-[90vh] bg-cover bg-center bg-no-repeat" style={{
+      backgroundImage: `url(https://image.tmdb.org/t/p/original${item.backdrop_path})`,
+      backgroundPosition: 'center top'
     }}>
-      {/* efeito de transparência com background */}
-      <div className="featured--vertical">
-        <div className="featured--horizontal">
-          <div className="featured--name">{item.name}</div>
-          <div className="featured--info">
-            <div className="featured--points">{item.vote_average} Pontos</div>
-            <div className="featured--year">{firstDate.getFullYear()}</div>
-            <div className="featured--seasons">
+      {/* Gradiente vertical para melhorar a legibilidade do texto sobre a imagem */}
+      <div className="w-full h-full bg-gradient-to-t from-black via-black/50 to-transparent">
+        {/* Gradiente horizontal para melhorar a legibilidade do texto sobre a imagem */}
+        <div className="w-full h-full bg-gradient-to-r from-black/90 md:from-black/70 to-transparent flex flex-col justify-end p-4 md:p-8 lg:p-12">
+          {/* Nome do filme/série */}
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2">{item.name}</h1>
+          
+          {/* Bloco de informações adicionais */}
+          <div className="flex flex-wrap gap-3 mb-3 text-sm md:text-base text-white">
+            {/* Pontuação média de avaliação - verde se >= 7, vermelho se < 7 */}
+            <div className={`font-bold ${item.vote_average >= 7 ? 'text-green-500' : 'text-red-500'}`}>
+              {item.vote_average.toFixed(1)} Pontos
+            </div>
+            {/* Ano de lançamento */}
+            <div>{firstDate.getFullYear()}</div>
+            {/* Número de temporadas (com tratamento para plural) */}
+            <div>
               {item.number_of_seasons} Temporada{item.number_of_seasons !== 1 ? 's' : ''}
             </div>
           </div>
-          <div className="featured--description">{description}</div>
-          <div className="featured--buttons">
-            <a href={`/watch/${item.id}`} className="featured--watchbutton">► Assistir</a>
-            <a href={`/list/${item.id}`} className="featured--mylistbutton">+ Minha Lista</a>
+          
+          {/* Descrição/sinopse do filme/série */}
+          <div className="text-sm md:text-base text-gray-200 mb-4 max-w-xl">{description}</div>
+          
+          {/* Botões de ação */}
+          <div className="flex flex-wrap gap-3 mb-4">
+            {/* Botão para assistir (link para página de reprodução) */}
+            <a href={`/watch/${item.id}`} className="bg-white text-black py-2 px-4 rounded font-bold hover:bg-opacity-80 transition-all flex items-center">
+              <svg className="w-4 h-4 mr-2 fill-current" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+              Assistir
+            </a>
+            {/* Botão para adicionar à lista pessoal */}
+            <a href={`/list/${item.id}`} className="bg-gray-600 text-white py-2 px-4 rounded font-bold hover:bg-gray-700 transition-all flex items-center">
+              <svg className="w-4 h-4 mr-2 fill-current" viewBox="0 0 24 24">
+                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+              </svg>
+              Minha Lista
+            </a>
           </div>
-          <div className="featured--genres"><strong>Gêneros:</strong> {genres.join(', ')} </div>
+          
+          {/* Lista de gêneros do filme/série */}
+          <div className="text-sm mb-[5rem] md:text-base text-gray-300">
+            <strong>Gêneros:</strong> {genres.join(', ')}
+          </div>
         </div>
       </div>
     </section>
