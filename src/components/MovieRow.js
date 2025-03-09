@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
 // Componente que exibe uma linha horizontal de filmes/séries
 // Recebe props: title (título da categoria) e items (lista de filmes/séries)
