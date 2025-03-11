@@ -4,7 +4,7 @@
 
 // Configuração da API
 export const API_CONFIG = {
-  API_KEY: process.env.REACT_APP_TMDB_API_KEY,
+  API_KEY: process.env.REACT_APP_TMDB_API_KEY || 'de451cc6c984b7d11762d13cd6c9437b',
   BASE_URL: process.env.REACT_APP_TMDB_BASE_URL || 'https://api.themoviedb.org/3',
   IMAGE_BASE_URL: process.env.REACT_APP_TMDB_IMAGE_BASE_URL || 'https://image.tmdb.org/t/p',
   DEFAULT_LANGUAGE: 'pt-BR'
