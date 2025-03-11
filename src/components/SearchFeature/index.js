@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close'; // Ícone X para limpar a busca
+import { API_CONFIG } from '../../utils/api';
 
 /**
  * Componente SearchFeature - Implementa uma barra de busca para filmes, séries e atores
@@ -33,7 +34,8 @@ const SearchFeature = () => {
     setIsLoading(true);
     try {
       // Usa a variável de ambiente para a chave da API
-      const API_KEY = process.env.REACT_APP_TMDB_API_KEY;
+      /* const API_KEY = process.env.REACT_APP_TMDB_API_KEY; */
+      const API_KEY = API_CONFIG.API_KEY;
       const BASE_URL = process.env.REACT_APP_TMDB_BASE_URL || 'https://api.themoviedb.org/3';
       
       // Endpoint 'multi' busca filmes, séries e pessoas ao mesmo tempo
