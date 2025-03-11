@@ -1,4 +1,5 @@
 import React from 'react';
+import SearchFeature from '../SearchFeature';
 
 // A prop 'black' controla se o cabeçalho deve ter fundo preto ou transparente
 function Header({black}) {
@@ -18,8 +19,12 @@ function Header({black}) {
         </a>
       </div>
       
-      {/* Container para o avatar/ícone do usuário */}
-      <div className="flex-none">
+      {/* Container para ações do usuário (busca e avatar) */}
+      <div className="flex items-center space-x-3">
+        {/* Componente de busca */}
+        <SearchFeature />
+        
+        {/* Avatar do usuário */}
         <a href="/">
           {/* Avatar responsivo com bordas arredondadas */}
           <img 

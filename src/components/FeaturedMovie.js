@@ -2,22 +2,28 @@ import React from 'react';
 
 // Componente que exibe o filme/série em destaque no topo da página
 // Recebe um objeto 'item' com informações do filme/série
-function FeaturedMovie({ item }){
-
+const FeaturedMovie = ({ item }) => {
   // Extrai a data de lançamento e converte para um objeto Date
-  let firstDate = new Date(item.first_air_date);
+  const firstDate = new Date(item.first_air_date);
   
-  // Cria um array para armazenar os gêneros do filme/série
-  let genres = [];
-  for(let i in item.genres){
-    genres.push(item.genres[i].name)
-  }
+  // Extrai os gêneros do filme/série.
+  const genres = item.genres ? item.genres.map(genre => genre.name) : [];
 
-  // Limita a descrição a 100 caracteres para não ocupar muito espaço
-  let description = item.overview;
-  if(description.length > 100){
-    description = description.substring(0, 100) + "...";
-  }
+  // Função pura para truncar texto sem cortar palavras
+  const truncateText = (text, maxLength) => {
+    if (!text || text.length <= maxLength) return text;
+    
+    const truncated = text.substring(0, maxLength);
+    const lastSpaceIndex = truncated.lastIndexOf(' ');
+    
+    return lastSpaceIndex > 0 
+      ? truncated.substring(0, lastSpaceIndex) + " ..."
+      : truncated + " ...";
+  };
+
+  // Aplica a função de truncamento à descrição
+  const description = truncateText(item.overview, 100);
+  console.log(item.overview);
 
   return (
     // Seção principal com imagem de fundo do filme/série
@@ -75,6 +81,6 @@ function FeaturedMovie({ item }){
       </div>
     </section>
   );
-}
+};
 
 export default FeaturedMovie;
